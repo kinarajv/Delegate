@@ -9,4 +9,9 @@
   <ItemGroup>
     <Content Include="Program.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.61.0" />
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.61.0.3095" />
+    <Content Include="service-account.json" />
+  </ItemGroup>
 </Project>

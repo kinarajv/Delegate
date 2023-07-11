@@ -1,34 +1,70 @@
-﻿class MainProgram 
+﻿using System;
+
+public class RepairEventArgs : EventArgs
 {
-	static void Main(string[] args) 
+	public string CarModel { get; set; }
+	public string RepairDescription { get; set; }
+
+	public RepairEventArgs(string carModel, string repairDescription)
 	{
-		Publisher myPublisher = new Publisher();
-		Subscriber mySubscriber = new Subscriber();
-		SecondSub mySecondSub = new SecondSub();
-		myPublisher.myDelegate += mySubscriber.Notification;
-		myPublisher.myDelegate += mySecondSub.Notification;
-		string result = myPublisher.myDelegate("Running on ");
+		CarModel = carModel;
+		RepairDescription = repairDescription;
+	}
+}
+public delegate void EventHandler(object sender, RepairEventArgs e);
+public class Workshop
+{
+	public event EventHandler RepairCompleted;
+	public void RepairCar(string carModel, string repairDescription)
+	{
+		Console.WriteLine($"Memperbaiki mobil {carModel}: {repairDescription}");
+
+		RepairEventArgs repairEventArgs = new RepairEventArgs(carModel, repairDescription);
+
+		OnRepairCompleted(repairEventArgs);
+	}
+
+	protected virtual void OnRepairCompleted(RepairEventArgs e)
+	{
+		RepairCompleted?.Invoke(this, e);
 	}
 }
 
-public class Publisher 
+public class CarOwner
 {
-	public delegate string MyDelegate(string message);
-	public MyDelegate myDelegate;
-}
+	public string Name { get; set; }
 
-public class Subscriber
-{
-	public string Notification(string message) 
+	public CarOwner(string name)
 	{
-		return message + "First Subscriber";
+		Name = name;
+	}
+	private void Workshop_RepairCompleted(object sender, RepairEventArgs e)
+	{
+		Console.WriteLine($"[Pemilik Mobil] {Name} menerima mobilnya yang telah diperbaiki: {e.CarModel}");
+		Console.WriteLine($"Deskripsi perbaikan: {e.RepairDescription}");
+	}
+	public void RegisterWorkshop(Workshop workshop)
+	{
+		workshop.RepairCompleted += Workshop_RepairCompleted;
+	}
+	public void UnregisterWorkshop(Workshop workshop)
+	{
+		workshop.RepairCompleted -= Workshop_RepairCompleted;
 	}
 }
 
-public class SecondSub
+class Program
 {
-	public string Notification(string message)
+	static void Main()
 	{
-		return message + "Second subscriber";
+		Workshop workshop = new Workshop();
+		CarOwner carOwner = new CarOwner("John");
+		carOwner.RegisterWorkshop(workshop);
+		
+		workshop.RepairCar("SUV", "Ganti oli dan periksa rem");
+		carOwner.UnregisterWorkshop(workshop);
+		workshop.RepairCar("Sedan", "Ganti ban");
+
+		Console.ReadLine();
 	}
 }

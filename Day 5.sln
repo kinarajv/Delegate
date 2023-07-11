@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A6b_Callback", "A6b_Callbac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A6a_DelegateforEventButton", "A6a_DelegateforEventButton\A6a_DelegateforEventButton.csproj", "{28FF33C8-A882-4F53-B74E-F0FCE0ECED54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventAnalogy - RepairShop", "EventAnalogy - RepairShop\EventAnalogy - RepairShop.csproj", "{C98700B1-AD50-4B21-9CCE-6C7C98C967BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,5 +128,9 @@ Global
 		{28FF33C8-A882-4F53-B74E-F0FCE0ECED54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28FF33C8-A882-4F53-B74E-F0FCE0ECED54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28FF33C8-A882-4F53-B74E-F0FCE0ECED54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98700B1-AD50-4B21-9CCE-6C7C98C967BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98700B1-AD50-4B21-9CCE-6C7C98C967BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98700B1-AD50-4B21-9CCE-6C7C98C967BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98700B1-AD50-4B21-9CCE-6C7C98C967BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

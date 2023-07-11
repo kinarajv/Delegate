@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EventHandlingExample
+namespace EventHandling
 {
     public delegate void ButtonClickDelegate();
 

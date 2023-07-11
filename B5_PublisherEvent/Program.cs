@@ -1,35 +1,34 @@
 ﻿public class Publisher
 {
-    // B1_Event untuk mengirim pesan ke subscriber
-    public event EventHandler<string> MessageSent;
+	public string name = "Publisher";
+	public event EventHandler<string> MessageSent;
 
-    public void SendMessage(string message)
-    {
-        // Memanggil semua metode yang terdaftar pada event
-        MessageSent?.Invoke(this, message);
-    }
+	public void SendMessage(string message)
+	{
+		MessageSent?.Invoke(this, message);
+	}
 }
 
 public class Subscriber
 {
-    public void OnMessageReceived(object sender, string message)
-    {
-        Console.WriteLine($"Subscriber menerima pesan: {message}");
-    }
+	public void OnMessageReceived(object sender, string message)
+	{
+		Console.WriteLine($"Subscriber menerima pesan: {message} dari {((Publisher)sender).name}");
+	}
 }
 
 public class Program
 {
-    public static void Main(string[] args)
-    {
-        Publisher publisher = new Publisher();
-        Subscriber subscriber1 = new Subscriber();
-        Subscriber subscriber2 = new Subscriber();
+	public static void Main(string[] args)
+	{
+		Publisher publisher = new Publisher();
+		Subscriber subscriber1 = new Subscriber();
+		Subscriber subscriber2 = new Subscriber();
 
-        // Mendaftarkan metode subscriber ke event
-        publisher.MessageSent += subscriber1.OnMessageReceived;
-        publisher.MessageSent += subscriber2.OnMessageReceived;
+		// Mendaftarkan metode subscriber ke event
+		publisher.MessageSent += subscriber1.OnMessageReceived;
+		publisher.MessageSent += subscriber2.OnMessageReceived;
 
-        publisher.SendMessage("Halo, ini pesan untuk semua subscriber!");
-    }
+		publisher.SendMessage("Halo, ini pesan untuk semua subscriber!");
+	}
 }

@@ -4,9 +4,9 @@ public delegate void PlayerAction();
 
 class Program {
     static void Main(string[] args) {
-        PlayerAction jumpAction = new PlayerAction(Player.Jump);
-        PlayerAction runAction = new PlayerAction(Player.Run);
-        PlayerAction swimAction = new PlayerAction(Player.Swim);
+        PlayerAction jumpAction = Player.Jump;
+        PlayerAction runAction = Player.Run;
+        PlayerAction swimAction = Player.Swim;
 
         Console.WriteLine("Choose an action (J for Jump, R for Run, S for Swim):");
         char input = Char.ToUpper(Console.ReadKey().KeyChar);

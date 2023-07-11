@@ -1,7 +1,7 @@
-﻿public delegate void MyDelegate(string message);
-public class MyEventPublisher
+﻿public delegate void Delegate(string message);
+public class Publisher
 {
-	public MyDelegate MyEvent;
+	public Delegate MyEvent;
 
 	public void DoSomething()
 	{
@@ -15,24 +15,24 @@ public class MyEventPublisher
 	}
 }
 
-public class MyEventSubscriber1
+public class Subscriber1
 {
 	public void MyEventHandler(string message)
 	{
-		Console.WriteLine($"B1_Event handled by subscriber 1. Message: {message}");
+		Console.WriteLine($"MyEventHandler {message}");
 	}
 }
 
-public class MyEventSubscriber2
+public class Subscriber2
 {
 	public void MyEventHandler(string message)
 	{
-		Console.WriteLine($"B1_Event handled by subscriber 2. Message: {message}");
+		Console.WriteLine($"MyEventHandler {message}");
 	}
 
 	public void MyEventHandler2(string message)
 	{
-		Console.WriteLine($"B1_Event handled 2 by subscriber 2. Message: {message}");
+		Console.WriteLine($"MyEventHandler2 {message}");
 	}
 }
 
@@ -40,9 +40,10 @@ public class Program
 {
 	static void Main(string[] args)
 	{
-		var publisher = new MyEventPublisher();
-		var subscriber1 = new MyEventSubscriber1();
-		var subscriber2 = new MyEventSubscriber2();
+		Publisher publisher = new Publisher();
+		Subscriber1 subscriber1 = new Subscriber1();
+		Subscriber2 subscriber2 = new Subscriber2();
+		
 		publisher.MyEvent += subscriber1.MyEventHandler;
 		publisher.MyEvent += subscriber2.MyEventHandler;
 		publisher.DoSomething();

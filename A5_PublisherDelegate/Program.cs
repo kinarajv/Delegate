@@ -1,14 +1,14 @@
 ﻿// Delegate
-public delegate void MessageHandler(string message);
+public delegate void DelegatePub(string message);
 
 public class Publisher
 {
     // Delegate instance untuk mendaftarkan subscriber
-    public MessageHandler MessageSent;
+    public DelegatePub SentNotif;
 
     public void SendMessage(string message)
     {
-        MessageSent?.Invoke(message);
+        SentNotif?.Invoke(message);
     }
 }
 
@@ -28,8 +28,8 @@ public class Program
         Subscriber subscriber1 = new Subscriber();
         Subscriber subscriber2 = new Subscriber();
 
-        publisher.MessageSent += subscriber1.OnMessageReceived;
-        publisher.MessageSent += subscriber2.OnMessageReceived;
+        publisher.SentNotif += subscriber1.OnMessageReceived;
+        publisher.SentNotif += subscriber2.OnMessageReceived;
 
         publisher.SendMessage("Halo, ini pesan!");
     }

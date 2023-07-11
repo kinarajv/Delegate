@@ -18,7 +18,7 @@ public class Program
     public static void Main()
     {
         MyClass myObject = new MyClass();
-        MyDelegate myDelegate = new MyDelegate(myObject.MethodA);
+        MyDelegate myDelegate = myObject.MethodA;
         myDelegate += myObject.MethodB;
 
         myDelegate.Invoke("Hello, world!");

@@ -2,17 +2,17 @@
 
 namespace CallbackExample
 {
-    public delegate void TaskCompletedDelegate();
+    public delegate void TaskComplete();
 
     class Program
     {
         static void Main(string[] args)
         {
-            TaskCompletedDelegate callback = OnTaskCompleted;
+            TaskComplete callback = OnTaskCompleted;
             PerformTask(callback);
         }
 
-        static void PerformTask(TaskCompletedDelegate callback)
+        static void PerformTask(TaskComplete callback)
         {
             Console.WriteLine("Menjalankan tugas...");
             callback();
